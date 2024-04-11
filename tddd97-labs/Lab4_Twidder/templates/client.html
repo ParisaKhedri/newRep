@@ -1,0 +1,404 @@
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+    <link href="{{ url_for('static', filename='css/client.css') }}"type="text/css" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/client.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/serverstub.js') }}"></script>
+
+
+    <script type="text/view" id="welcomeview">
+        <div id="welcomeviewBody">
+
+            <div id="main-container">
+    
+                <div id="logo-container">
+                    <img src="..\static\images\wimage.png"> 
+                </div>
+    
+                <div id="login-signup-main-container">
+    
+                    <div id="login-container">
+                        <form id = "loginForm" 
+                        name = "loginForm"
+                        onsubmit = "return validateSigninForm()">
+                            <div class="form-container">
+
+                                <!-- Email Input -->
+                                <div class = "common-form-input-container">
+                                    <label for = "email">Email:</label>
+                                    <input 
+                                    class = "common-form-input" 
+                                    type = "email" 
+                                    name = "email" 
+                                    required>
+                                </div>
+
+                                <!-- password Input -->
+                                <div class = "common-form-input-container">
+                                    <label for = "password">Password:</label>
+                                    <input 
+                                    class = "common-form-input" 
+                                    type = "password" 
+                                    name = "password" 
+                                    required 
+                                    pattern = ".{3,}" title="Password must be at 
+                                    least 3 characters long">
+                                </div>
+
+                                <p 
+                                id = "signinPerror"
+                                class ="errorMessage">
+                                    Something went wrong!
+                                </p>
+
+                                <!-- button-->
+                                <button type = "submit" 
+                                class = "common-form-button">
+                                    Login
+                                </button>
+    
+                            </div>
+    
+                        </form>
+                    </div>
+    
+                    <div id = "signup-container">
+                        <p id = "signup-p"> Sign up here</p>
+                        <form 
+                        name = "signupForm"
+                        id = "signupForm"  
+                        onsubmit ="return validateSignupForm()">
+    
+                            <div class = "form-container">
+                                <!-- First Name Input -->
+                                <div class = "common-form-input-container">
+                                    <label for = "signup-firstname">
+                                        First Name:
+                                    </label>
+                                    <input 
+                                    id = "signup-firstname" 
+                                    class = "common-form-input" 
+                                    type = "text" 
+                                    name = "firstname" 
+                                    required>
+                                </div>
+
+                                <!-- Family Name Input -->
+                                <div class = "common-form-input-container">
+                                    <label for = "signup-familyname">Family Name:</label>
+                                    <input 
+                                    id = "signup-familyname" 
+                                    class = "common-form-input" 
+                                    type = "text" 
+                                    name = "familyname" 
+                                    required>
+                                </div>
+
+                                <!-- Gender Dropdown -->
+                                <div class = "common-form-input-container">
+                                    <label for = "signup-gender">Gender:</label>
+                                    <select 
+                                    id = "signup-gender" 
+                                    class = "common-form-input" 
+                                    name = "gender" 
+                                    required>
+                                        <option value = "male">Male</option>
+                                        <option value = "female">Female</option>
+                                        <option value = "other">Other</option>
+                                    </select>
+                                </div>
+
+                                <!-- City Input -->
+                                <div class = "common-form-input-container">
+                                    <label for = "signup-city">City:</label>
+                                    <input 
+                                    id = "signup-city" 
+                                    class = "common-form-input" 
+                                    type = "text" name="city" required>
+                                </div>
+
+                                <!-- Country Input -->
+                                <div class = "common-form-input-container">
+                                    <label for = "signup-country">Country:</label>
+                                    <input 
+                                    id = "signup-country"
+                                    class = "common-form-input" 
+                                    type = "text" 
+                                    name = "country" 
+                                    required>
+                                </div>
+
+                                <!-- Email Input -->
+                                <div class = "common-form-input-container">
+                                    <label for = "singup-email">Email:</label>
+                                    <input 
+                                    id = "singup-email"
+                                    class = "common-form-input" 
+                                    type = "email" 
+                                    name = "email" 
+                                    required>
+                                </div>
+
+                                <!-- Password Input -->
+                                <div class = "common-form-input-container">
+                                    <label for = "signup-password">
+                                        Password:
+                                    </label>
+                                    <input 
+                                    id = "signup-password" 
+                                    class = "common-form-input" 
+                                    type = "password" 
+                                    name = "password" 
+                                    required 
+                                    pattern = ".{3,}" 
+                                    title = "Password must be at least 3 
+                                    characters long">
+                                </div>
+
+                                <!-- Repeat Password Input -->
+                                <div class = "common-form-input-container">
+                                    <label for = "signup-repeat-password">
+                                        Repeat Password:
+                                    </label>
+                                    <input 
+                                    id = "signup-repeat-password" 
+                                    class = "common-form-input" 
+                                    type = "password" 
+                                    name = "repeatpassword" 
+                                    required 
+                                    pattern = ".{3,}" 
+                                    title="Password must be at least 3 
+                                    characters long">
+                                </div>
+
+                                <p 
+                                id = "signupPerror"
+                                class ="errorMessage">
+                                    Something went wrong!
+                                </p>
+
+                                <!-- Button -->
+                                <button type = "submit" 
+                                class = "common-form-button">
+                                    Register
+                                </button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </script>
+    <script type="text/view" id="profileview">
+        <div id="profileviewBody">
+
+            <div id="profileTabs">
+                <div class="tab" id="homeTab" onclick="showPanel('homePanel')">
+                    Home
+                </div>
+                <div class="tab" id="browseTab" onclick="showPanel('browsePanel')">
+                    Browse
+                </div>
+                <div class="tab" id="accountTab" onclick="showPanel('accountPanel')">
+                    Account
+                </div>
+    
+            </div>
+    
+            <div id="selectedTabContentCntainer">
+    
+                <div id="homePanel" class="tabPanel">
+                    <div 
+                    class = "panleMainContainer"
+                    >
+
+                        <div id = "homePanelMenu" class="panelMenu">
+                            <!-- user info and two buttons -->
+                            <ul id="homePanelUserInfoContainer">
+                               
+                            </ul>
+                        </div>
+
+                        <div 
+                        id="homePanelPostView"
+                        class ="userWall">
+
+                            <button id = "homePanelPostViewUpdateButton"
+                            class = "buttonPanelView">
+                                Update
+                            </button>
+
+                            <ul 
+                            id = "homePanelUserWallPosts" 
+                            class = "userWallposts">
+                            </ul>
+                            
+                            <textArea 
+                            id = "homePanelPostMessageContent" 
+                            class = "postMessageContent">
+                            </textArea>
+
+                            <p 
+                            id = "homePanelPostperror"
+                            class ="errorMessage">
+                                perror Home
+                            </p>    
+
+                            <button id = "homePanelPostViewPostButton"
+                            class = "buttonPanelView">
+                                Post
+                            </button>
+
+                        </div>
+    
+                    </div>
+    
+    
+                </div>
+    
+                <div id="browsePanel" class="tabPanel">
+
+                    <div id ="browsePanelSearchUser">
+                        <p> Looking for: </p>
+                        <input id = "browseUserWallByEmail">
+                        
+                        <p 
+                        id="searchUserWallPerror"
+                        class ="errorMessage">
+                            This is the content for the Browse panel.
+                        </p>
+                        <button onclick="return getUserInfo(false)">
+                            Search
+                        </button>
+                    </div>
+
+
+                    <div id = "browsePanelSearchUserWallResult">
+        
+                        <div class = "panleMainContainer">
+
+                            <div 
+                            id = "browsePanelMenu"
+                            class="panelMenu">
+                                <!-- user info and two buttons -->
+                                <ul id="browsePanelUserInfoContainer">
+                                </ul>
+                        
+                                <button onclick="return backToBrowsePanelSearchview()">
+                                    Back to Search
+                                </button>
+                            </div>
+
+                            <div id="browsePanelUserwall", class = "userWall">
+                               
+
+                                <button id = "browsePanelPostViewUpdateButton"
+                                class = "buttonPanelView">
+                                    Update
+                                </button>
+
+                                <ul 
+                                id = "browsePanelUserWallPosts" 
+                                class = "userWallposts">
+                                </ul>
+                                
+                                <textArea 
+                                id = "browsePanelPostMessageContent" 
+                                class = "postMessageContent">
+                                </textArea>
+
+                                <p 
+                                id = "browsePanelPostperror"
+                                class ="errorMessage">
+                                    Perror Browse
+                                </p> 
+
+                                <button id = "browsePanelPostViewPostButton"
+                                class = "buttonPanelView">
+                                    Post
+                                </button>
+                                
+    
+                                
+                            </div>
+                            
+                        </div> 
+                    </div> 
+                </div>
+    
+                <div id="accountPanel" class="tabPanel">
+                    <h2>Account Panel</h2>
+                    <p>This is the content for the Account panel.</p>
+    
+                    <form name="accountForm" onsubmit="return changePassword()">
+                        <!-- Old Password Input -->
+                        <div class="common-form-input-container">
+                            <label for="accountOldPassword">
+                                Old Password:
+                            </label>
+                            <input id="accountOldPassword" class="common-form-input" type="password"
+                                name="accountOldPassword" required pattern=".{3,}"
+                                title="Password must be at least 3 characters long">
+                        </div>
+    
+                        <!-- New Password Input -->
+                        <div class="common-form-input-container">
+                            <label for="accountNewPassword">
+                                New Password:
+                            </label>
+                            <input id="accountNewPassword" class="common-form-input" type="password"
+                                name="accountNewpassword" required pattern=".{3,}"
+                                title="Password must be at least 3 characters long">
+                        </div>
+    
+                        <!-- Repeat New Password Input -->
+                        <div class="common-form-input-container">
+                            <label for="accountRepeatNewPassword">
+                                Repeat New Password:
+                            </label>
+                            <input id="accountRepeatNewPassword" class="common-form-input" type="password"
+                                name="accountRepeatNewPassword" required pattern=".{3,}"
+                                title="Password must be at least 3 characters long">
+                        </div>
+    
+                        <p 
+                        id="accountPerror"
+                        class ="errorMessage">
+                            Passwords do not match!
+                        </p>
+    
+                        <button type="submit" class="common-form-button">
+                            Change password
+                        </button>
+
+                    </form>
+                    
+                    <p 
+                    id="signoutPerror"
+                    class ="errorMessage">
+                        Signout error!
+                    </p>
+    
+                    <button onclick="return signOut()">
+                        Signout
+                    </button>
+    
+                </div>
+    
+            </div>
+        </div>
+    </script>
+
+</head>
+
+<body>
+
+
+
+
+</body>
+
+</html>

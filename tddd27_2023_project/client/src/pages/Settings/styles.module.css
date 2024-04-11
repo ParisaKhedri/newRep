@@ -1,0 +1,29 @@
+#background {
+    background-color: #E8BABF;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#side_divide {
+    height: 100%;
+    width: 35%;
+    background-color: #fed0d6;
+    box-shadow: 5px 0 5px -0px #e0b4b9;
+    padding: 30px;
+    padding-left: 50px;
+    padding-right: 70px;
+}
+
+#navigation_bar_container {
+    width: 100%;
+    padding-top: 25px;
+}
+
+#side_panel {
+    height: 100%;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+}

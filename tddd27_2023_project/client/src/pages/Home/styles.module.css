@@ -1,0 +1,160 @@
+#background {
+    background-color: #E8BABF;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#side_divide {
+    height: 100%;
+    width: 35%;
+    background-color: #fed0d6;
+    box-shadow: 5px 0 5px -0px #e0b4b9;
+    padding: 30px;
+    padding-left: 50px;
+    padding-right: 70px;
+}
+
+#navigation_bar_container {
+    width: 100%;
+    padding-top: 25px;
+}
+
+#my_journals_structure_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#my_journals_structure_container > button {
+    margin: 0 var(--my-journals-padding) 0 var(--my-journals-padding);
+    width: calc(100%-2*var(--my-journals-padding));
+    margin-top: 30px;
+}
+
+#my_journals_container {
+    width: 65%;
+}
+
+#journal_grid_container {
+    scroll-behavior: smooth;
+    padding: 0 var(--my-journals-padding) 0 var(--my-journals-padding);
+    overflow:auto;
+    display: grid;
+    grid-auto-rows: minmax(fit-content, calc(100%/3));
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 40px;
+    row-gap: 20px;
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.journal_item {
+    position: relative;
+    background-color: rgb(188, 117, 149);
+    aspect-ratio: 1/1;
+    border-radius: 15%;
+    border: 6px solid rgb(255, 242, 248);
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
+    transition: 0.1s;
+    overflow: hidden;
+}
+
+.journal_item:hover {
+    cursor: pointer;
+    filter: brightness(1.2);
+    transform: scale(1.05);
+}
+
+.title_container {
+    background-color: rgb(255, 242, 248);
+    width: 100%;
+    transform: translateY(-10px);
+    z-index: 0;
+    border-radius: 30px;
+}
+
+.journal_title_text {
+    padding: 15px 0 15px 0;
+    font-family: 'MODERN TYPEWRITER', sans-serif;
+}
+
+#modal {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.25);
+}
+
+#modal_content {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    width: 50%;
+    background-color: white;
+    position: absolute;
+    top: 25%;
+    left: 7.5%;
+    border-radius: 20px;
+    padding-top: 15px;
+    background-color: rgb(191, 112, 125);
+    border: 5px solid #E8BABF;
+}
+
+#close_button {
+    display: inline-block;
+    padding: 9px 13px 9px 13px;
+    border: solid 2px #c19097;
+    border-radius: 7px;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    font-size: 20px;
+    color: rgb(255, 242, 248);
+    background-color: #E8BABF;
+}
+
+#close_button:hover {
+    cursor: pointer;
+    filter: brightness(1.1);
+}
+
+.journalOptionsText {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    font-size: 35px;
+    color: rgb(255, 242, 248);
+    margin-bottom: 10px;
+}
+
+.journalOptionsInput {
+    width: 70%;
+    height: 40px;
+    border-radius: 10px;
+    border-color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    align-self: center;
+}
+
+#journal_description_input {
+    height: 50%;
+    width: 70%;
+    align-self: center;
+    border-radius: 10px;
+    border-color: white;
+    padding: 10px;
+    resize: none;
+}
+
+#journal_image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

@@ -1,0 +1,24 @@
+.img-icon {
+    width: 100%;
+    height: 100%;
+    border: 2px solid grey;
+    border-radius: 20px; 
+    padding-right: 10px;
+}
+
+.img-icon:hover {
+    color: rgb(74, 74, 74);
+    border-color:rgb(74, 74, 74);
+    cursor: pointer;
+}
+
+.edit-icon {
+    height: 65%;
+    width: auto;
+    margin-left: auto;
+}
+
+.edit-icon:hover {
+    color: rgb(74, 74, 74);
+    cursor: pointer;
+}
